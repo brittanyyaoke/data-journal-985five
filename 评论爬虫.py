@@ -19,7 +19,7 @@ import os
 import sys
 
 
-#爬虫函数，爬取源代#
+#爬虫函数，爬取源代码#
 def get_html(url_visit):
 
     ua = uagent.get_ua()

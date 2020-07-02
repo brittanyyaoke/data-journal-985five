@@ -19,12 +19,11 @@ import os
 import sys
 
 
-#爬虫函数，爬取源代码#
+#==爬虫函数，爬取源代码==#
 def get_html(url_visit):
 
     ua = uagent.get_ua()
     headers = {"User-Agent": ua}
-
 
     try:
         resp = requests.get(url_visit, headers=headers)
@@ -41,6 +40,8 @@ def get_html(url_visit):
 
 if __name__ == '__main__':
     comment_url = "https://www.douban.com/group/topic/180487605/"  # 1）需替换为需要爬取的网址 2）将start=后的数字改为{}先空出来以便一会进行循环设置#
+    
+    #判断当前工作目录下是否已经存在“评论页代码.text”这个文件，有则需要先删除#
     if os.path.exists("评论页代码.text"):
         print("请先删除当前工作目录下的评论页代码文件")
         sys.exit()
@@ -63,7 +64,7 @@ with open('评论页代码.text', 'r', encoding='utf-8') as f:
         comments.append(content)
         commentdata = pd.DataFrame({'评论': comments})
 
-#保存为csv文件#
+#====保存为csv文件====#
 #print(commentdata)
 commentdata.to_csv("讨论主题.csv")
 
